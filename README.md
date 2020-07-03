@@ -108,7 +108,7 @@ When you are replicating our code, you can use 'Training_model.ipynb' to take ph
 We used two RandomForestRegressor model on sklearn to predict start time of 'Bed-nosleep' and 'Sleeping Period'. The RandomForestRegressor is a meta estimator that fits a number of classifying decision trees on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. source: https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html For the first model,  "1.Timestamp of Arrival at home", "4.Duration Time of Average Sleep Time of this week", "5.Duration Time of Sleeptime of Yesterday", "6.Day of the week" was used. The second model used one more featrue which is '2.Timestamp of Lie on Bed'
 
 # Actions
-##output explaination
+## output explaination
 Mommybot uses 6 different time variables to generate four different outputs. 
 ## Time vairables
  1.Timestamp of Arrival at home
