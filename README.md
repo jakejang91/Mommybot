@@ -41,7 +41,7 @@ Installing several libraries are required.
 ### VLC
 ### Tensorflow
 ### sklearn
-### Serial
+### pySerial
 
 
 # Experimental setting
