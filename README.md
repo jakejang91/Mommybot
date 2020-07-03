@@ -38,11 +38,11 @@ note: we sent 9600 singal to Arduino-kit+LCD in order to use display setting usi
 
 ## software setup
 Installing several libraries are required. 
-### VLC
-### Tensorflow
-### sklearn
-### pyserial
-### pandas 
+1.  VLC
+2. Tensorflow
+3. sklearn
+4. pyserial
+5. pandas 
 
 
 # Environment setting
