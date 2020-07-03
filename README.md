@@ -1,7 +1,7 @@
 # Mommybot
 
 Our team developed a system called Mommybot, it is a system using jetson nano to manage user's sleeping hours. 
-The system was developed for the final proejct of our coursework, which is "KSE 624" from KAIST institute. 
+The system was developed for the final proejct of our coursework, which is "KSE 624" from KAIST. 
 For Mommybot, it took about 4 weeks to develop the system. 
 
 # Introduction
@@ -41,10 +41,11 @@ Installing several libraries are required.
 ### VLC
 ### Tensorflow
 ### sklearn
-### Serial
+### pyserial
+### pandas 
 
 
-# Experimental setting
+# Environment setting
 Mommybot's experiment was taken at a home of one of teammates. Since the system has to record the user sleeping, Mommybot was positioned right in front of bed which could record his face and body easily. 
 
 Where Mommybot was placed.
@@ -53,8 +54,8 @@ Where Mommybot was placed.
 
 
 # Record Time event:
-Our team classified everyday's time hours into five different classes. 
-Each classes will be recorded on Mommybot with two differet sensors & speaker device. 
+Everyday's time hours is divided into five different classes. 
+Each classes transition timestamp will be recorded on Mommybot with two differet sensors & speaker device. 
 ### 1. Working hours
   - Time interval from the moment you left your house until you returned to home & pair bluetooth to Mommybot.
   - Bluetooth connection is requried to record your home arrival.
@@ -96,14 +97,15 @@ Current status consist of three situation, which are
 ![0aca43c0-b9c7-11ea-bacc-00044be6afc0](https://user-images.githubusercontent.com/32156141/86339679-d4cffd80-bc8e-11ea-83bc-7bd84e134114.jpg)
 
 
-The RandomForestRegressor is a meta estimator that fits a number of classifying decision trees on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. source: https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html
-
-For pre-trained model, we took each of status for 2000 times, which are 6000 in total. Then we splited data into training and validation to train and validate the model. 
+For pre-trained model, we took photos each of status for 2000 times, which are 6000 in total. Then we splited data into training and validation to train and validate the model. 
 The accuracy was gained about 80%. We believe this was due to the low light condition, which is one of setings that could not be avoided because people sleep in dark condtion. 
 
 ### Note 
 Our code named 'Training_model.ipynb' will shows steps in creating pre-trained model, which is 'mode_model2.h5. 
 When you are replicating our code, you can use 'Training_model.ipynb' to take photos of three different status.
+
+# Time prediction
+We used two RandomForestRegressor model on sklearn to predict start time of 'Bed-nosleep' and 'Sleeping Period'. The RandomForestRegressor is a meta estimator that fits a number of classifying decision trees on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. source: https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html For the first model,  "1.Timestamp of Arrival at home", "4.Duration Time of Average Sleep Time of this week", "5.Duration Time of Sleeptime of Yesterday", "6.Day of the week" was used. The second model used one more featrue which is '2.Timestamp of Lie on Bed'
 
 # Actions
 ##output explaination
@@ -113,9 +115,9 @@ Mommybot uses 6 different time variables to generate four different outputs.
  2.Timestamp of Lie on Bed
  3.Timestamp of Start to Sleep
 ##### Below variables are calculated by above three variables.
- 4.Timestamp of Average Sleep Time of this week
- 5.Timestamp of Sleeptime of Yesterday
- 6.Timestamp of Day of the week
+ 4.Duration Time of Average Sleep Time of this week
+ 5.Duration Time of Sleeptime of Yesterday
+ 6.Day of the week
 
 ## Outputs (Prediction vs Suggestion)
 ###  1.Prediction 1 - When will you go to Bed
