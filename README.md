@@ -106,7 +106,7 @@ Our code named 'Training_model.ipynb' will shows steps in creating pre-trained m
 When you are replicating our code, you can use 'Training_model.ipynb' to take photos of three different status.
 
 # Actions
-##output explaination
+## output explaination
 Mommybot uses 6 different time variables to generate four different outputs. 
 ## Time vairables
  1.Timestamp of Arrival at home
