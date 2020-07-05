@@ -4,6 +4,15 @@ Our team developed a system called Mommybot, it is a system using jetson nano to
 The system was developed for the final proejct of our coursework, which is "KSE 624" from KAIST. 
 For Mommybot, it took about 4 weeks to develop the system. 
 
+Authors: Jae Hyuk Jang(jaejang0113@kaist.ac.kr), Seonghyeok Park(seonghyeok@kaist.ac.kr)
+
+# Introduction Video
+To show the demo video of Mommybot, our team took a video showing what it does.
+link: https://youtu.be/kPztnB4K7dI
+
+# Presentation for Mommybot Project
+https://docs.google.com/presentation/d/1E_-ZmixUMiO1RGA-mFYeuAM8Ui1XGgMFyC9YNX4EFKU/edit?usp=sharing
+
 # Introduction
 These days, more and more people are suffering from sleep deprivation. There are many reports saying that sleep deprivation will give negative effects on health. 
 According to Korea Gallup REport in 2017, sleep deprivation will increase risk of cardiovascular disease 8 times, risk of diabetes 5 times, risk of dementia 5 times, etc.
@@ -170,6 +179,3 @@ the time intervals are shown at below image.
 # Limitation
 Moommybot uses camera to take a photo of user to check wheter he is there, not sleeping, or sleeping. With sleeping condition, normal people would sleeping in the dark. Since our model used normal camera that was attached to the Jetson nano kit, the quality of the photo taken at night was very low. Therefore, Whether one is sleeping or not, can not be achieved in some cases. Not only this was the issue, but also what you are wearing at night is also important as well. Since the pre-trained model only used a picture of me wearing yellow t-shirt, if I'm wearing another shirt, there is a high chance that Mommybot would not be able to check the status correctly. 
 In order to replicate our model, we recommend that you to use the same experiemntal conditions. 
-
-To show the demo video of Mommybot, our team took a video showing what it does.
-link: https://youtu.be/kPztnB4K7dI
