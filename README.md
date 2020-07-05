@@ -165,6 +165,66 @@ the time intervals are shown at below image.
 
 ![outputs](https://user-images.githubusercontent.com/32156141/86394131-08d01080-bcd9-11ea-8744-bcc03c9450ca.JPG)
 
+
+# Detail Code Documents
+
+## main.ipynb
+*NOTE* Before run main, you need to build your own "sleep state classifier" and "time predictor" models using other 2 .ipynb file.
+This is main project file. 
+
+## Model_Generator_SleepStateClassifier.ipynb
+Generate train data using Jetbot camera and Train sleep status classifier (use MobileNetV2 on Keras)
+After run all code, timemodel1.pickle and timemodel2.pickle will be generated
+
+
+## Model_Generator_TimePredictor.ipynb
+Generate predict model from logs.csv file. you need to write your own logs.csv file based on your experience.
+After run all code, model2.json' and 'model_weights2.h5 will be generated
+
+## t6modules
+
+### LogManager.py
+This class help you handling logs.csv file. logs.csv file have [t1-1, t1-2, t1-3, t2-01, t2-02, t3] columns which mean "home arrive timestamp", "go to bed timestamp", "fall asleep timestamp", "sleep time", "average sleep time on this week", "day of week information."
+- getYesterdaySleep() : return yesterday sleep time from logs.csv
+- getLastdaysSleep() : return  average sleep time on this week from logs.csv
+- saveLog(data) : append data on end of logs.csv. the data format should be [t1-1, t1-2, t1-3, t2-01, t2-02, t3]
+
+### MusicPlayer.py
+This class help you playing .mp3 file on your directory for morning call or any voice recommendation. 
+- Constructor(filename) : The constructor requires filename which you want to play. (e.g. "Wishful_Thinking.mp3")
+- playMusic() : play .mp3 file until you call stopMusic() method
+- stopMusic() : Stop playing .mp3 file
+
+### SerialManager.py
+This class help you send a message through USB Serial port to interact Arudino LCD display. Basically, it use ttyUSB0 port with 9600 rate.
+- readSerial() : read message from serial port
+- writeSerial(sentence) : send sentence (string) to serial port
+
+### SleepClassifier.py
+This class help you use image classifier to classify sleep status. The model files ('model2.json' & 'model_weights2.h5') are required.
+- getStatus(img_path) : img_path is string variable which share to snapshot method on main.ipynb. return one of strings ('non' 'not sleeping' 'sleeping' 'chaos') based on snap
+
+### StatusManager.py
+This class help you handling sleep status. The main project requires same sleep status on last 5 snapshot to move on next stage. 
+- reset() : reset recorded last status
+- checkStatus(): return last status. If recorded status are less than 5, return 'Not enough'. If the 5 status are same, return its state. Otherwise, return 'NotSame'
+- updateLastStatus(data) : record string data. in main project, this method get classifier output. 
+
+### TimeManager.py
+This class help you handling timestamp and convert time unit. The project works with "minute" unit becuase of standardize timestamp unit through all night. If you set your start time is 16:00, the day will be start at 960min to 2399(next day 15:59).
+- Constructor(starttime) : starttime is baseline of the day. If you set start time 16:00, 960 is start time.
+- l2t(t) : convert linux time to minute unit.
+- hm2t(data) : convert [Hour, min] data to minute unit.
+- isStart(data) : return whether system start or not
+
+### TimePredictor.py
+This class help you use time predictor. The model files ('timemodel1.pickle' & 'timemodel2.pickle') are required.
+- getPredictedTime(data, variable) : return predicted time for t1-2 or t1-3. variable is string value, 't1-2' or 't1-3'. data is depends on variable. if predict target is 't1-2', please input ['t1-1' 't2-1' 't2-2' 't3']. Otherwise, please input ['t1-1' 't1-2' 't2-1' 't2-2' 't3'] using int List.
+
+
+# Arduino Code
+*TODO* 
+
 # Limitation
 Moommybot uses camera to take a photo of user to check wheter he is there, not sleeping, or sleeping. With sleeping condition, normal people would sleeping in the dark. Since our model used normal camera that was attached to the Jetson nano kit, the quality of the photo taken at night was very low. Therefore, Whether one is sleeping or not, can not be achieved in some cases. Not only this was the issue, but also what you are wearing at night is also important as well. Since the pre-trained model only used a picture of me wearing yellow t-shirt, if I'm wearing another shirt, there is a high chance that Mommybot would not be able to check the status correctly. 
 In order to replicate our model, we recommend that you to use the same experiemntal conditions. 
