@@ -8,16 +8,10 @@ Authors: Jae Hyuk Jang(jaejang0113@kaist.ac.kr), Seonghyeok Park(seonghyeok@kais
 
 # Introduction Video
 To show the demo video of Mommybot, our team took a video showing what it does.
-
-link: 
-![mommybot_youtubr](https://user-images.githubusercontent.com/32156141/86527153-31bdf480-bed7-11ea-8aea-f72e257ac197.png)
-
-https://youtu.be/kPztnB4K7dI
+[![mommybot_youtubr](https://user-images.githubusercontent.com/32156141/86527153-31bdf480-bed7-11ea-8aea-f72e257ac197.png)](https://youtu.be/kPztnB4K7dI)
 
 # Presentation for Mommybot Project
-![mommybot](https://user-images.githubusercontent.com/32156141/86527154-32ef2180-bed7-11ea-9c40-c9c67921d0a4.png)
-
-https://docs.google.com/presentation/d/1E_-ZmixUMiO1RGA-mFYeuAM8Ui1XGgMFyC9YNX4EFKU/edit?usp=sharing
+[![mommybot](https://user-images.githubusercontent.com/32156141/86527154-32ef2180-bed7-11ea-9c40-c9c67921d0a4.png)](https://docs.google.com/presentation/d/1E_-ZmixUMiO1RGA-mFYeuAM8Ui1XGgMFyC9YNX4EFKU/edit?usp=sharing)
 
 # Introduction
 These days, more and more people are suffering from sleep deprivation. There are many reports saying that sleep deprivation will give negative effects on health. 
