@@ -47,14 +47,14 @@ note: we sent 9600 singal to Arduino-kit+LCD in order to use display setting usi
 
 ## software setup
 Installing several libraries are required. 
-1.  VLC
-2. Tensorflow
-3. sklearn
-4. pyserial
-5. pandas 
+### VLC
+### Tensorflow
+### sklearn
+### Serial
+### pySerial
 
 
-# Environment setting
+# Experimental setting
 Mommybot's experiment was taken at a home of one of teammates. Since the system has to record the user sleeping, Mommybot was positioned right in front of bed which could record his face and body easily. 
 
 Where Mommybot was placed.
