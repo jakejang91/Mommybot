@@ -1,8 +1,17 @@
 # Mommybot
 
 Our team developed a system called Mommybot, it is a system using jetson nano to manage user's sleeping hours. 
-The system was developed for the final proejct of our coursework, which is "KSE 624" from KAIST institute. 
+The system was developed for the final proejct of our coursework, which is "KSE 624" from KAIST. 
 For Mommybot, it took about 4 weeks to develop the system. 
+
+Authors: Jae Hyuk Jang(jaejang0113@kaist.ac.kr), Seonghyeok Park(seonghyeok@kaist.ac.kr)
+
+# Introduction Video
+To show the demo video of Mommybot, our team took a video showing what it does.
+[![mommybot_youtubr](https://user-images.githubusercontent.com/32156141/86527153-31bdf480-bed7-11ea-8aea-f72e257ac197.png)](https://youtu.be/kPztnB4K7dI)
+
+# Presentation for Mommybot Project
+[![mommybot](https://user-images.githubusercontent.com/32156141/86527154-32ef2180-bed7-11ea-9c40-c9c67921d0a4.png)](https://docs.google.com/presentation/d/1E_-ZmixUMiO1RGA-mFYeuAM8Ui1XGgMFyC9YNX4EFKU/edit?usp=sharing)
 
 # Introduction
 These days, more and more people are suffering from sleep deprivation. There are many reports saying that sleep deprivation will give negative effects on health. 
@@ -41,6 +50,7 @@ Installing several libraries are required.
 ### VLC
 ### Tensorflow
 ### sklearn
+### Serial
 ### pySerial
 
 
@@ -53,8 +63,8 @@ Where Mommybot was placed.
 
 
 # Record Time event:
-Our team classified everyday's time hours into five different classes. 
-Each classes will be recorded on Mommybot with two differet sensors & speaker device. 
+Everyday's time hours is divided into five different classes. 
+Each classes transition timestamp will be recorded on Mommybot with two differet sensors & speaker device. 
 ### 1. Working hours
   - Time interval from the moment you left your house until you returned to home & pair bluetooth to Mommybot.
   - Bluetooth connection is requried to record your home arrival.
@@ -96,26 +106,27 @@ Current status consist of three situation, which are
 ![0aca43c0-b9c7-11ea-bacc-00044be6afc0](https://user-images.githubusercontent.com/32156141/86339679-d4cffd80-bc8e-11ea-83bc-7bd84e134114.jpg)
 
 
-The RandomForestRegressor is a meta estimator that fits a number of classifying decision trees on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. source: https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html
-
-For pre-trained model, we took each of status for 2000 times, which are 6000 in total. Then we splited data into training and validation to train and validate the model. 
+For pre-trained model, we took photos each of status for 2000 times, which are 6000 in total. Then we splited data into training and validation to train and validate the model. 
 The accuracy was gained about 80%. We believe this was due to the low light condition, which is one of setings that could not be avoided because people sleep in dark condtion. 
 
 ### Note 
 Our code named 'Training_model.ipynb' will shows steps in creating pre-trained model, which is 'mode_model2.h5. 
 When you are replicating our code, you can use 'Training_model.ipynb' to take photos of three different status.
 
+# Time prediction
+We used two RandomForestRegressor model on sklearn to predict start time of 'Bed-nosleep' and 'Sleeping Period'. The RandomForestRegressor is a meta estimator that fits a number of classifying decision trees on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. source: https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html For the first model,  "1.Timestamp of Arrival at home", "4.Duration Time of Average Sleep Time of this week", "5.Duration Time of Sleeptime of Yesterday", "6.Day of the week" was used. The second model used one more featrue which is '2.Timestamp of Lie on Bed'
+
 # Actions
-##output explaination
+## output explaination
 Mommybot uses 6 different time variables to generate four different outputs. 
 ## Time vairables
  1.Timestamp of Arrival at home
  2.Timestamp of Lie on Bed
  3.Timestamp of Start to Sleep
 ##### Below variables are calculated by above three variables.
- 4.Timestamp of Average Sleep Time of this week
- 5.Timestamp of Sleeptime of Yesterday
- 6.Timestamp of Day of the week
+ 4.Duration Time of Average Sleep Time of this week
+ 5.Duration Time of Sleeptime of Yesterday
+ 6.Day of the week
 
 ## Outputs (Prediction vs Suggestion)
 ###  1.Prediction 1 - When will you go to Bed
@@ -225,9 +236,7 @@ This class help you use time predictor. The model files ('timemodel1.pickle' & '
 # Arduino Code
 *TODO* 
 
+
 # Limitation
 Moommybot uses camera to take a photo of user to check wheter he is there, not sleeping, or sleeping. With sleeping condition, normal people would sleeping in the dark. Since our model used normal camera that was attached to the Jetson nano kit, the quality of the photo taken at night was very low. Therefore, Whether one is sleeping or not, can not be achieved in some cases. Not only this was the issue, but also what you are wearing at night is also important as well. Since the pre-trained model only used a picture of me wearing yellow t-shirt, if I'm wearing another shirt, there is a high chance that Mommybot would not be able to check the status correctly. 
 In order to replicate our model, we recommend that you to use the same experiemntal conditions. 
-
-To show the demo video of Mommybot, our team took a video showing what it does.
-link: https://youtu.be/kPztnB4K7dI
