@@ -1,14 +1,16 @@
+#this moudle is  to send singal to arduino kit
+
 import serial
 
 class SerialManager():
     
     def __init__(self):
-        self.port = '/dev/ttyUSB0'
+        self.port = '/dev/ttyUSB0' #this is a path where arduino is connected to jetson nano.
         self.isUsed = False
     
     def readSerial(self):
         try:
-            with serial.Serial(self.port, 9600) as ser:
+            with serial.Serial(self.port, 9600) as ser: #arduino kit requries 9600 signal in order to act
                 return ser.readline()
         except:
             print("error:Can't read serial")
