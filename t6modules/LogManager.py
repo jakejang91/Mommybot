@@ -13,7 +13,7 @@ class LogManager():
         except:
             print("NONO YESTERDAY1")
     
-    def getLasydaysSleep(self):
+    def getLastdaysSleep(self):
         try:
             return self.logs.tail(1)['t2-02'].values[0]
         except:
