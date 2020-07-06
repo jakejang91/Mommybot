@@ -47,12 +47,11 @@ note: we sent 9600 singal to Arduino-kit+LCD in order to use display setting usi
 
 ## software setup
 Installing several libraries are required. 
-### VLC
-### Tensorflow
-### sklearn
-### Serial
-### pySerial
-
+* VLC : to play .mp3 file
+* Tensorflow : to classify sleep state. MobileNetV2
+* sklearn : to predict sleep time. RandomForestRegressor
+* pySerial : to interact to arduino through USB Serial port
+* pandas : to hande .csv files easily
 
 # Experimental setting
 Mommybot's experiment was taken at a home of one of teammates. Since the system has to record the user sleeping, Mommybot was positioned right in front of bed which could record his face and body easily. 
@@ -184,13 +183,13 @@ the time intervals are shown at below image.
 This is main project file. 
 
 ## Model_Generator_SleepStateClassifier.ipynb
-Generate train data using Jetbot camera and Train sleep status classifier (use MobileNetV2 on Keras)
-After run all code, timemodel1.pickle and timemodel2.pickle will be generated
+Generate train data using Jetbot camera and Train sleep status classifier (use MobileNetV2 on Keras) This will be take photo for each state. 
+After run all code, 'model2.json' and 'model_weights2.h5 will be generated
 
 
 ## Model_Generator_TimePredictor.ipynb
-Generate predict model from logs.csv file. you need to write your own logs.csv file based on your experience.
-After run all code, model2.json' and 'model_weights2.h5 will be generated
+Generate predict model from logs.csv file. you need to write your own logs.csv file based on your experience. 
+After run all code, 'timemodel1.pickle' and 'timemodel2.pickle' will be generated
 
 ## t6modules
 
@@ -234,7 +233,7 @@ This class help you use time predictor. The model files ('timemodel1.pickle' & '
 
 
 # Arduino Code
-*TODO* 
+There is one Arduino_LCDwithSerial.ino file on same name of directory. If you compile the conde on your arduino, it will simply work when it get string on Serial port.
 
 
 # Limitation
