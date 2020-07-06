@@ -49,15 +49,15 @@ note: we sent 9600 singal to Arduino-kit+LCD in order to use display setting usi
 
 
 
-## software setup
+## Software (Modules) setup
 Installing several libraries are required. 
-* VLC : to play .mp3 file
 * Tensorflow : to classify sleep state. MobileNetV2
 * sklearn : to predict sleep time. RandomForestRegressor
 * pySerial : to interact to arduino through USB Serial port
 * pandas : to hande .csv files easily
+* VLC : to play .mp3 file
 
-# Experimental setting
+# Environment setting
 Mommybot's experiment was taken at a home of one of teammates. Since the system has to record the user sleeping, Mommybot was positioned right in front of bed which could record his face and body easily. 
 
 Where Mommybot was placed.
@@ -184,16 +184,17 @@ the time intervals are shown at below image.
 
 ## main.ipynb
 *NOTE* Before run main, you need to build your own "sleep state classifier" and "time predictor" models using other 2 .ipynb file.
-This is main project file. 
+This is main project file. The sleep time manager works only mon-fri
+* Monday: Only record timestmap
+* Tue - Fri : Record Timestamp + Time management based on logs
 
 ## Model_Generator_SleepStateClassifier.ipynb
-Generate train data using Jetbot camera and Train sleep status classifier (use MobileNetV2 on Keras) This will be take photo for each state. 
-After run all code, 'model2.json' and 'model_weights2.h5 will be generated
-
+Generate train data (take photos) using Jetbot camera and Train sleep status classifier (use MobileNetV2 on TF.Keras) This will be take photo for each state. 
+After run all cells, 'model2.json' and 'model_weights2.h5 will be generated
 
 ## Model_Generator_TimePredictor.ipynb
-Generate predict model from logs.csv file. you need to write your own logs.csv file based on your experience. 
-After run all code, 'timemodel1.pickle' and 'timemodel2.pickle' will be generated
+Generate predict model from logs.csv file. you need to write your own logs.csv file based on your experience before run this code. 
+After run all cells, 'timemodel1.pickle' and 'timemodel2.pickle' will be generated. First model is for predicting time to go to bed. The other is for predicting time to fall asleep.
 
 ## t6modules
 
